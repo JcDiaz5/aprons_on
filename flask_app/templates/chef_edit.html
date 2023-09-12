@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}">
+    <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@200;400&family=Handjet&family=Inter:wght@200&family=Roboto:wght@100&family=Varela+Round&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <title>Edit Chef</title>
+</head>
+<body>
+    <div class="main">
+        <div class="top-nav">
+            <a href="/chef_dash"><img src="/../static/img/aprons_on_LOGO.png" alt="no img" class="logo"></a>
+            <div class="profile-nav">
+                <!-- ************ ONLY HERE TO BE DISPLAYED. PENDING: DROPDOWN MENU ************* -->
+                <a href="/chef_logout" class="dd-menu-link"><p>Logout</p><span>></span></a>
+                <a href="/desserts/new" class="dd-menu-link"><p>Post a Dessert</p><span>></span></a>
+                <!-- **************************************************************************** -->
+                <img src="/../static/img/user-circle.png" alt="img" class="profile-pic">
+                <div class="dd-menu-wrap">
+                    <div class="dd-menu">
+                        <div class="loggedin_chef">
+                            <img src="/../static/img/user-circle.png" alt="img" class="profile-pic">
+                            <h3>{{chef.first_name}} {{chef.last_name}}</h3>
+                        </div>
+                        <hr>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="edit-background">
+            <div class="edit-form-container">
+                <form action="/chef/update" class="" method="POST">
+                    <h1 style="text-align: center;">Update Profile</h1>
+                    <h2 style="text-align: center; margin-bottom:20px;">Enter New Information</h2>
+                    <input type="hidden" value="{{chef.id}}" name="id">
+                    <div class="index-row">
+                        <label for="">First Name:</label>
+                        <input type="text"  class="form-control" name="first_name">
+                    </div>
+                    <div class="index-row">
+                        <label for="">Last Name:</label>
+                        <input type="text" class="form-control" name="last_name">
+                    </div>
+                    <div class="index-row">
+                        <label for="">Type of Freelance Work:</label>
+                        <input type="text" class="form-control" name="freelance" placeholder="Personal Cook / Catering / Menu Designer">
+                    </div>
+                    <div class="btn-input">
+                        <input class="submit-btn" type="submit" value="Update">
+                    </div>
+                </form>
+            </div>
+            <div class="validation-text">
+                {% with messages = get_flashed_messages() %}     <!-- declare a variable called messages -->
+                    {% if messages %}                            <!-- check if there are any messages -->
+                        {% for message in messages %}            <!-- loop through the messages -->
+                            <p>{{message}}</p>                   <!-- display each message in a paragraph tag -->
+                        {% endfor %}
+                    {% endif %}
+                {% endwith %}
+            </div>
+            <img src="/../static/img/donuts.jpg" alt="img" style="width: 600px;">
+        </div>
+    </div>
+</body>
+</html>

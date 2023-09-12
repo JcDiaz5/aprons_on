@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@200;400&family=Handjet&family=Inter:wght@200&family=Roboto:wght@100&family=Varela+Round&display=swap" rel="stylesheet">
+    <title>Display All Requests</title>
+</head>
+<body>
+    <div class="main">
+        <div class="top-nav">
+            <img src="/../static/img/aprons_on_LOGO.png" alt="no img" class="logo">
+            <div class="profile-nav">
+                <a href="/requests/new" class="dd-menu-link"><p>New Requests</p><span>></span></a>
+                <a href="/users/edit/{{user.id}}" class="dd-menu-link"><p>Edit Profile</p><span>></span></a>
+                <a href="/user_logout" class="dd-menu-link"><p>Logout</p><span>></span></a>
+                <img src="/../static/img/user-circle.png" alt="img" class="profile-pic">
+                <div class="dd-menu-wrap">
+                    <div class="dd-menu">
+                        <div class="loggedin_user">
+                            <img src="/../static/img/user-circle.png" alt="img" class="profile-pic">
+                            <h3>{{user.username}}</h3>
+                        </div>
+                        <hr>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="display-all">
+                <h3>Request made by you:</h3>
+                <div class="display-top">
+                    {% for request in requests %}
+                    <h3>{{request.request_name}}</h3>
+                    <p>Description: <br/>
+                    {{request.request_description}}</p>
+                    <a href="/requests/edit/{{request.id}}" class="edit-link"> <img src="/../static/img/pencil.png" alt=""> Edit</a>
+                    <a href="/requests/delete/{{request.id}}" class="delete-link"> <img src="/../static/img/trash.png" alt=""> Delete</a>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

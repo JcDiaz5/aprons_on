@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@200;400&family=Handjet&family=Inter:wght@200&family=Roboto:wght@100&family=Varela+Round&display=swap" rel="stylesheet">
+    <title>Display All Desserts From One Chef</title>
+</head>
+<body>
+    <div class="main">
+        <div class="top-nav">
+            <a href="/chef_dash"><img src="/../static/img/aprons_on_LOGO.png" alt="no img" class="logo"></a>
+        </div>
+        <div class="page-title">
+            <h1>Desserts posted</h1>
+            <div class="display-all">
+                <div class="display-container">
+                    {% for dessert in desserts %}
+                    <div class="display-info">
+                        <a href="/desserts/view/{{dessert.id}}"><img src="/../static/img/cake.png" alt="dessert_pic"></a> 
+                        <input type="hidden" value="{{dessert.id}}" name="id">
+                        <h3>{{dessert.dessert_name}}</h3>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

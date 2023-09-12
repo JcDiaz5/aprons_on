@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@200;400&family=Handjet&family=Inter:wght@200&family=Roboto:wght@100&family=Varela+Round&display=swap" rel="stylesheet">
+    <title>User Dashboard</title>
+</head>
+<body>
+    <div class="main">
+        <div class="top-nav">
+            <a href="/chef_dash"><img src="/../static/img/aprons_on_LOGO.png" alt="no img" class="logo"></a>
+            <div class="profile-nav">
+                <!-- ************ ONLY HERE TO BE DISPLAYED. PENDING: DROPDOWN MENU ************* -->
+                <a href="/user_logout" class="dd-menu-link"><p>Logout</p><span>></span></a>
+                <a href="/requests/new" class="dd-menu-link"><p>Post a Request</p><span>></span></a>
+                <!-- **************************************************************************** -->
+                <img src="/../static/img/user-circle.png" alt="img" class="profile-pic">
+                <div class="dd-menu-wrap">
+                    <div class="dd-menu">
+                        <div class="loggedin_chef">
+                            <img src="/../static/img/user-circle.png" alt="img" class="profile-pic">
+                            <h3>{{chef.first_name}} {{chef.last_name}}</h3>
+                        </div>
+                        <hr>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="profile-background">
+            <div class="left-container">
+                <div class="chef-card">
+                    <div class="profile-info">
+                        <img src="/../static/img/user-circle.png" alt="" class="main-pic">
+                        <h4>{{user.username}}</h4>
+                    </div>
+                    <div class="chef-info">
+                        <div class="info-row">
+                            <img src="/../static/img/star.png" alt="chef_hat_img" class="info-icons">
+                            <a href="/desserts/{{user.id}}/favorites" class="card-link">Favorite Desserts</a>
+                        </div>
+                        <div class="info-row">
+                            <img src="/../static/img/pencil.png" alt="fork/knife_img" class="info-icons">
+                            <a href="/requests/new" class="card-link">Write a Request</a>
+                        </div>
+                        <div class="info-row">
+                            <img src="/../static/img/gear.png" alt="email_img" class="info-icons">
+                            <a href="/users/edit/{{user.id}}" class="card-link">Edit Profile</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="side-wall">
+                    <div class="wall-top">
+                        <h2>Following</h2>
+                        <a href="/users/{{user.id}}/view_following">View all Chefs</a>
+                    </div>
+                    <div class="side-list">
+                        {% for chef in following_chefs %}
+                        <div class="side-list-container">
+                            <a href="/desserts/view_all/{{chef.id}}"><img src="/../static/img/user-circle.png" style="width: 90px;" alt="user_pic"></a>
+                            <p>{{chef.first_name}} {{chef.last_name}}</p>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+            <div class="right-container">
+                <div class="requestwall-container">
+                    <div class="wall-top">
+                        <h2>Random Wall</h2>
+                        <a href="/desserts/users/view_all">View All Desserts</a>
+                    </div>
+                    <div class="wall-content">
+                        <div class="desserts">
+                            {% for dessert in rndm_desserts %}
+                            <div class="display-wall-dessert">
+                                <a href="/desserts/view/{{dessert.id}}"><img src="/../static/img/cake.png" alt="dessert_pic"></a> 
+                                <input type="hidden" value="{{dessert.id}}" name="id">
+                                <h3>{{dessert.dessert_name}}</h3>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
