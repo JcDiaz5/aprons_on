@@ -75,7 +75,6 @@ class Request:
         data = {"id": id, "user_id":user_id}
         return connectToMySQL(cls.DB).query_db(query, data)
 
-
 # GET ALL
     @classmethod
     def get_all(cls):
