@@ -4,8 +4,9 @@ from flask_app.models.chef import Chef
 from flask_app.models.dessert import Dessert
 from flask_app import app
 from flask_bcrypt import Bcrypt
+import secrets
+
 bcrypt = Bcrypt(app)
-import random
 
 
 
@@ -43,7 +44,7 @@ def user_dash():
     chef=Chef.get_one(id)
     following_chefs = User.get_following_chefs(session['user_id'])
     desserts = Dessert.get_all()
-    rndm_desserts = desserts if len(desserts) <= 8 else random.sample(desserts, 8)
+    rndm_desserts = desserts if len(desserts) <= 8 else secrets.SystemRandom().sample(desserts, 8)
     return render_template('user_dash.html', user=user, chef=chef, following_chefs=following_chefs, rndm_desserts=rndm_desserts)
 
 
