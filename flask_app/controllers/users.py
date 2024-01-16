@@ -19,8 +19,7 @@ def register_user():
     if not User.validate_user(request.form):
         return redirect("/user_signup")
     email = { "email" : request.form["email"] }
-    user_in_db = User.get_by_email(email)
-    if user_in_db:
+    if user_in_db := User.get_by_email(email):
         flash("An account is already using that email. Please use another email address.")
         return redirect("/")
     pw_hash = bcrypt.generate_password_hash(request.form['password'])

@@ -26,8 +26,7 @@ def register():
     if not Chef.validate_chef(request.form):
         return redirect("/chef_signup")
     email = { "email" : request.form["email"] }
-    chef_in_db = Chef.get_by_email(email)
-    if chef_in_db:
+    if chef_in_db := Chef.get_by_email(email):
         flash("An account is already using that email. Please use another email address.")
         return redirect("/")
     pw_hash = bcrypt.generate_password_hash(request.form['password'])
