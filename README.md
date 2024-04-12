@@ -1,6 +1,6 @@
 # Aprons On (Ongoing remake)
 
-Welcome to Dessert Delights! This web application allows users to register as chefs or users. Chefs can post dessert recipes and view dessert requests from users, while users can browse desserts, submit requests, and follow their favorite chefs.
+Welcome to Aprons On! This web application allows users to register as chefs or users. Chefs can post dessert recipes and view dessert requests from users, while users can browse desserts, submit requests, and follow their favorite chefs.
 
 ## Features
 
