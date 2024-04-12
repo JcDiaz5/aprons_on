@@ -24,7 +24,7 @@ Welcome to Aprons On! This web application allows users to register as chefs or 
 
 - **Frontend**: HTML, CSS, JavaScript
 - **Backend**: Python, Flask framework
-- **Database**: MySQL or SQLite
+- **Database**: MySQL
 - **Authentication**: Flask-Login
 - **Data Visualization**: Flask dashboard
 
