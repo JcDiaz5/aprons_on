@@ -36,6 +36,9 @@ MANIFEST
 *.manifest
 *.spec
 
+# MySQL Connection
+flask_app/config/
+
 
 # Installer logs
 pip-log.txt
