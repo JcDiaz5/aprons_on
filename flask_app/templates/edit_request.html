@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}">
+    <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@200;400&family=Handjet&family=Inter:wght@200&family=Roboto:wght@100&family=Varela+Round&display=swap" rel="stylesheet">
+    <title>Update Request</title>
+</head>
+<body>
+    <div class="main">
+        <div class="top-nav">
+            <img src="/../static/img/aprons_on_LOGO.png" alt="no img" class="logo">
+            <div class="profile-nav">
+                <!-- ************ ONLY HERE TO BE DISPLAYED. PENDING: DROPDOWN MENU ************* -->
+                <a href="/user_logout" class="dd-menu-link"><p>Logout</p><span>></span></a>
+                <a href="/requests/view_all" class="dd-menu-link"><p>View Your Requests</p><span>></span></a>
+                <a href="/user/edit/{{user.id}}" class="dd-menu-link"><p>Edit Profile</p><span>></span></a>
+                <!-- **************************************************************************** -->
+                <img src="/../static/img/user-circle.png" alt="img" class="profile-pic">
+                <div class="dd-menu-wrap">
+                    <div class="dd-menu">
+                        <div class="loggedin_user">
+                            <img src="/../static/img/user-circle.png" alt="img" class="profile-pic">
+                            <h3>{{user.username}}</h3>
+                        </div>
+                        <hr>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <h1 class="title">Edit Your Request!</h1>
+        <div class="background">
+            <div class="validation-text">
+                {% with messages = get_flashed_messages() %}     <!-- declare a variable called messages -->
+                    {% if messages %}                            <!-- check if there are any messages -->
+                        {% for message in messages %}            <!-- loop through the messages -->
+                            <p>{{message}}</p>                   <!-- display each message in a paragraph tag -->
+                        {% endfor %}
+                    {% endif %}
+                {% endwith %}
+            </div>
+            <div class="forms">
+                <form action="/requests/update" class="form-register" method="POST">
+                    <h2>Edit your request:</h2>
+                    <input type="hidden" value="{{request.id}}" name="id">
+                    <div class="index-row">
+                        <p>Current Dessert Name: {{request.request_name}}</p>
+                        <label for="">New Dessert Name:</label>
+                        <input type="text"  class="" name="request_name">
+                    </div>
+                    <div class="index-row">
+                        <p>Current Description: {{request.request_description}}</p>
+                        <label for="">New Description:</label>
+                        <input type="text" class="" name="request_description">
+                    </div>
+                    <div class="btn-input">
+                        <input class="btn-gold" type="submit" value="Update">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
